@@ -1,61 +1,80 @@
-# 📚 BooksToScrape Web Scraper
+# 📚 BooksToScrape Web Scraper (Python)
 
-A simple Python web scraping project that extracts book titles, prices, and links from [BooksToScrape.com](https://books.toscrape.com/) using **BeautifulSoup** and **Pandas**.
+A simple Python web scraping project that extracts book information from  
+[BooksToScrape.com](https://books.toscrape.com/) using **BeautifulSoup** and **Pandas**.
+
+This project is designed as a **learning and practice exercise** for web scraping fundamentals.
 
 ---
 
 ## 🧠 Project Overview
 
-This project demonstrates the fundamentals of web scraping:
-- Sending HTTP requests using `requests`
-- Parsing HTML structure using `BeautifulSoup`
-- Extracting specific tags and attributes
-- Storing data in a clean Pandas DataFrame
-- Exporting the scraped data into a CSV file
+The goal of this project is to understand how real websites are structured
+and how to extract useful data from HTML pages.
+
+In this project, I practiced:
+- Sending HTTP requests to a live website
+- Parsing HTML structure with BeautifulSoup
+- Extracting data from tags and attributes
+- Handling relative URLs
+- Cleaning simple text data
+- Saving scraped data into a CSV file
+
+---
+
+## 📊 Data Extracted
+
+For each book on the first page of the website, the following information is collected:
+
+- **Title** – Full book title  
+- **Price** – Book price (currency symbol removed)  
+- **Star Rating** – Rating as text (One, Two, Three, Four, Five)  
+- **Availability** – Stock status (e.g. *In stock*)  
+- **Image URL** – Full URL of the book image  
+- **Book Link** – Full URL to the book detail page  
 
 ---
 
 ## 🧩 Technologies Used
 
-- **Python 3.x**
-- **BeautifulSoup4**
-- **Requests**
-- **Pandas**
+- **Python 3**
+- **requests** – to download web pages
+- **BeautifulSoup (bs4)** – to parse and navigate HTML
+- **pandas** – to store data and export CSV files
 
 ---
 
 ## ⚙️ How It Works
 
-1. **Connect to Website:**  
-   The script sends a request to the BooksToScrape website and downloads the HTML page.
+1. **Send Request**  
+   The script sends an HTTP request to the BooksToScrape website and retrieves the HTML content.
 
-2. **Parse the HTML:**  
-   BeautifulSoup parses the HTML so you can easily find specific tags and classes.
+2. **Parse HTML**  
+   BeautifulSoup parses the HTML document so specific elements can be found easily.
 
-3. **Extract Data:**  
-   Each book’s data is located inside an `<article class="product_pod">` tag.  
-   The scraper extracts:
-   - Title → from `<h3><a title="..."></a></h3>`
-   - Price → from `<p class="price_color">`
-   - Link → from the `href` attribute inside the `<a>` tag.
+3. **Locate Book Containers**  
+   Each book is inside an `<article class="product_pod">` element.
 
-4. **Store and Save:**  
-   The extracted data is saved in a structured Pandas DataFrame and exported as `books_to_scrape_dataset.csv`.
+4. **Extract Data**  
+   From each book container, the scraper extracts:
+   - Title from the `title` attribute inside `<h3><a>`
+   - Price from `<p class="price_color">`
+   - Star rating from the `class` attribute of `<p class="star-rating">`
+   - Availability from the text inside `<p class="instock availability">`
+   - Image and book links (converted to full URLs)
 
----
-
-## 📊 Sample Output
-
-| Title | Price | Link |
-|-------|--------|------|
-| A Light in the Attic | £51.77 | catalogue/a-light-in-the-attic_1000/index.html |
-| Tipping the Velvet | £53.74 | catalogue/tipping-the-velvet_999/index.html |
-| Soumission | £50.10 | catalogue/soumission_998/index.html |
+5. **Store and Save**  
+   The extracted data is stored in a Pandas DataFrame and saved as a CSV file.
 
 ---
 
-## 🧱 How to Run
+## 📁 Project Structure
 
-### 1️⃣ Install Dependencies
-```bash
-pip install requests beautifulsoup4 pandas
+```text
+books-to-scrape-scraper/
+│
+├── books_scraper.py
+├── books_page1.csv
+└── README.md
+
+```

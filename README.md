@@ -1,80 +1,74 @@
-# 📚 Books to Scrape – Web Scraping with Python
+# 📚 Books To Scrape – Multi-Page Web Scraper (Python)
 
-A simple Python web scraping project that extracts book information from  
+A simple Python project that scrapes book data from multiple pages of  
 [BooksToScrape.com](https://books.toscrape.com/) using **BeautifulSoup** and **Pandas**.
 
-This project is designed as a **learning and practice exercise** for web scraping fundamentals.
+This project extends a single-page scraper to handle **multiple pages**.
 
 ---
 
 ## 🧠 Project Overview
 
-The goal of this project is to understand how real websites are structured
-and how to extract useful data from HTML pages.
+The goal of this project is to practice real-world web scraping by:
+- Looping through multiple pages
+- Understanding URL patterns
+- Extracting structured data from HTML
+- Cleaning simple text fields
+- Saving the final dataset into a CSV file
 
-In this project, I practiced:
-- Sending HTTP requests to a live website
-- Parsing HTML structure with BeautifulSoup
-- Extracting data from tags and attributes
-- Handling relative URLs
-- Cleaning simple text data
-- Saving scraped data into a CSV file
+The code is intentionally kept **simple and beginner-friendly**.
 
 ---
 
 ## 📊 Data Extracted
 
-For each book on the first page of the website, the following information is collected:
+For each book across multiple pages, the scraper collects:
 
 - **Title** – Full book title  
 - **Price** – Book price (currency symbol removed)  
-- **Star Rating** – Rating as text (One, Two, Three, Four, Five)  
+- **Star Rating** – One, Two, Three, Four, Five  
 - **Availability** – Stock status (e.g. *In stock*)  
-- **Image URL** – Full URL of the book image  
-- **Book Link** – Full URL to the book detail page  
+- **Image** – Full image URL  
+- **Link** – Full book detail page URL  
 
 ---
 
 ## 🧩 Technologies Used
 
-- **Python 3**
-- **requests** – to download web pages
-- **BeautifulSoup (bs4)** – to parse and navigate HTML
-- **pandas** – to store data and export CSV files
+- Python 3  
+- requests  
+- BeautifulSoup (bs4)  
+- pandas  
 
 ---
 
 ## ⚙️ How It Works
 
-1. **Send Request**  
-   The script sends an HTTP request to the BooksToScrape website and retrieves the HTML content.
+1. **Page Range Input**  
+   The user specifies a start and end page.
 
-2. **Parse HTML**  
-   BeautifulSoup parses the HTML document so specific elements can be found easily.
+2. **Send Requests**  
+   The script loops through pages and sends HTTP requests.
 
-3. **Locate Book Containers**  
-   Each book is inside an `<article class="product_pod">` element.
+3. **Parse HTML**  
+   BeautifulSoup parses each page’s HTML.
 
-4. **Extract Data**  
-   From each book container, the scraper extracts:
-   - Title from the `title` attribute inside `<h3><a>`
-   - Price from `<p class="price_color">`
-   - Star rating from the `class` attribute of `<p class="star-rating">`
-   - Availability from the text inside `<p class="instock availability">`
-   - Image and book links (converted to full URLs)
+4. **Extract Book Data**  
+   Each book is located inside `<article class="product_pod">`.
 
-5. **Store and Save**  
-   The extracted data is stored in a Pandas DataFrame and saved as a CSV file.
+5. **Store Results**  
+   All extracted data is stored in lists and converted to a DataFrame.
+
+6. **Save CSV**  
+   The final dataset is saved as `books_multi_page.csv`.
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-books-to-scrape-scraper/
+books-to-scrape-multi-page/
 │
-├── books_scraper.py
-├── books_page1.csv
+├── books_scraper_multi_page.py
+├── books_multi_page.csv
 └── README.md
-
-```

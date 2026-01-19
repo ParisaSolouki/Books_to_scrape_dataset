@@ -1,4 +1,4 @@
-# 📚 BooksToScrape Web Scraper (Python)
+# 📚 Books to Scrape – Web Scraping with Python
 
 A simple Python web scraping project that extracts book information from  
 [BooksToScrape.com](https://books.toscrape.com/) using **BeautifulSoup** and **Pandas**.
